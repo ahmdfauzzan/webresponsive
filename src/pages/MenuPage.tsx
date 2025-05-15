@@ -1,4 +1,4 @@
-import { useMenu } from "@/hook/useMenu";
+import { useMenu } from "../hook/useMenu";
 import { useState } from "react";
 
 export default function MenuPage() {

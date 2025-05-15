@@ -1,4 +1,4 @@
-import logo from "@/assets/img/logo-techno.png";
+import logo from "../assets/img/logo-techno.png";
 
 export default function HomeHeader() {
   return (

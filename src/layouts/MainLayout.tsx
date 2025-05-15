@@ -1,7 +1,7 @@
 import { Outlet, useLocation } from "react-router-dom";
-import HomeHeader from "@/components/HomeHeader";
-import MenuHeader from "@/components/MenuHeader";
-import BottomNav from "@/components/BottomNav";
+import HomeHeader from "../components/HomeHeader";
+import MenuHeader from "../components/MenuHeader";
+import BottomNav from "../components/BottomNav";
 
 export default function MainLayout() {
   const location = useLocation();

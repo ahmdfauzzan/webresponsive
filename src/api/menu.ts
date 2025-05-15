@@ -1,4 +1,4 @@
-import { getToken } from "@/utils/storage";
+import { getToken } from "../utils/storage";
 
 export interface MenuItem {
   name: string;
