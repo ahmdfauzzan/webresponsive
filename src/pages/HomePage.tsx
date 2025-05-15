@@ -15,7 +15,7 @@ export default function HomePage() {
   const { greeting, name, saldo, point, qrcode, banner } = data!.result;
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-white">
       <div className="max-w-md mx-auto">
         <div
           className="relative shadow p-6 bg-white/80 backdrop-blur-sm"
@@ -72,7 +72,7 @@ export default function HomePage() {
             ))}
           </Swiper>
 
-          <div className="flex justify-between items-center px-4 py-4 bg-white">
+          <div className="flex justify-between items-center px-4 py-4 bg-white border-b border-dotted">
             <div className="custom-pagination flex gap-2" />
             <button className="text-sm text-green-500 font-medium flex items-center gap-1">
               View All <ChevronRight size={16} />
