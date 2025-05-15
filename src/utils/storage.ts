@@ -1,11 +1,15 @@
+import Cookies from "js-cookie";
+
+const TOKEN_KEY = "auth_token";
+
 export const saveToken = (token: string): void => {
-  localStorage.setItem("auth_token", token);
+  Cookies.set(TOKEN_KEY, token, { expires: 1 }); 
 };
 
-export const getToken = (): string | null => {
-  return localStorage.getItem("auth_token");
+export const getToken = (): string | undefined => {
+  return Cookies.get(TOKEN_KEY);
 };
 
 export const clearToken = (): void => {
-  localStorage.removeItem("auth_token");
+  Cookies.remove(TOKEN_KEY);
 };

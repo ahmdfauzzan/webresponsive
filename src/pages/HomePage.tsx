@@ -55,12 +55,7 @@ export default function HomePage() {
         </div>
 
         <div className="relative mb-6">
-          <Swiper
-            spaceBetween={10}
-            slidesPerView={1}
-            pagination={{ clickable: true, el: ".custom-pagination" }}
-            modules={[Pagination]}
-          >
+          <Swiper spaceBetween={10} slidesPerView={1} modules={[Pagination]}>
             {banner.map((url, index) => (
               <SwiperSlide key={index}>
                 <img
@@ -72,9 +67,9 @@ export default function HomePage() {
             ))}
           </Swiper>
 
-          <div className="flex justify-between items-center px-6 py-4 bg-white">
-            <div className="custom-pagination flex gap-2 w-fit flex-shrink-0" />
-            <button className="min-w-max text-sm text-green-500 font-medium flex items-center gap-1">
+          <div className="flex justify-between items-center px-4 py-4 bg-white">
+            <div className="flex gap-2 flex-shrink-0 w-[50%]" />
+            <button className="min-w-max text-sm text-green-500 font-medium flex justify-end items-center gap-1 w-[50%]">
               View All <ChevronRight size={16} />
             </button>
           </div>
