@@ -1,78 +1,85 @@
-import { useHome } from "@/hook/useHome";
+import React, { useState, type FormEvent } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../hook/useAuth";
+import logotecno from "../assets/img/logo-techno.png";
 
-export default function HomePage() {
-  const { data, isLoading, isError, error, refetch } = useHome();
+export default function LoginPage() {
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [errorMsg, setErrorMsg] = useState<string>("");
+  const navigate = useNavigate();
 
-  if (isLoading) return <p className="text-center mt-10">Loading...</p>;
-  if (isError && error instanceof Error)
-    return (
-      <div className="text-center mt-10 text-red-500">
-        <p>{error.message}</p>
-        <button onClick={() => refetch()} className="underline mt-2 text-sm">
-          Coba lagi
-        </button>
-      </div>
+  const { mutate: login } = useAuth();
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
+    e.preventDefault();
+    setErrorMsg("");
+
+    login(
+      { email, password },
+      {
+        onSuccess: () => navigate("/home"),
+        onError: (error: unknown) => {
+          if (error instanceof Error) {
+            setErrorMsg(error.message);
+          } else {
+            setErrorMsg("Login gagal, silakan coba lagi.");
+          }
+        },
+      }
     );
-
-  const { greeting, name, saldo, point, qrcode, banner } = data!.result;
+  };
 
   return (
-    <div className="min-h-screen bg-gray-100 px-4 pb-20">
-      {/* Greeting Card */}
-      <div className="mt-6 mb-6">
-        <div className="bg-white shadow rounded-xl p-4">
-          <p className="text-gray-500">{greeting},</p>
-          <h2 className="text-lg font-bold mb-3">{name}</h2>
-
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <img src={qrcode} alt="QR" className="w-10 h-10" />
-              <div>
-                <p className="text-sm text-gray-600">Saldo</p>
-                <p className="text-base font-semibold">
-                  Rp {saldo.toLocaleString()}
-                </p>
-              </div>
-            </div>
-            <div className="text-right">
-              <p className="text-sm text-gray-600">Points</p>
-              <p className="text-green-500 font-semibold">{point}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Banner Section */}
-      <div>
-        <div className="relative overflow-hidden rounded-xl">
-          <div className="flex gap-4 overflow-x-auto scroll-smooth snap-x snap-mandatory">
-            {banner.map((url, index) => (
-              <img
-                key={index}
-                src={url}
-                alt={`Banner ${index + 1}`}
-                className="w-full h-40 object-cover rounded-xl snap-start shrink-0"
-              />
-            ))}
-          </div>
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
+      <div className="w-full max-w-xs">
+        {/* Logo */}
+        <div className="flex justify-center mb-8">
+          <img
+            src={logotecno}
+            alt="Logo"
+            className="w-44 select-none"
+            draggable={false}
+          />
         </div>
 
-        {/* Dot + View All */}
-        <div className="flex justify-between items-center mt-2 px-1">
-          <div className="flex gap-1">
-            {banner.map((_, idx) => (
-              <div
-                key={idx}
-                className={`w-2 h-2 rounded-full ${
-                  idx === 0 ? "bg-green-500" : "bg-gray-300"
-                }`}
-              ></div>
-            ))}
+        {/* Form */}
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+          <div>
+            <label className="block text-sm text-gray-600 mb-1">Email</label>
+            <input
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
           </div>
-          <button className="text-sm text-green-500 font-medium">
-            View All →
+
+          <div>
+            <label className="block text-sm text-gray-600 mb-1">Password</label>
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+
+          <button
+            type="submit"
+            className="w-full p-3 bg-white text-black font-semibold rounded-md shadow hover:shadow-md transition"
+          >
+            Login
           </button>
-        </div>
+        </form>
+
+        {errorMsg && (
+          <p className="text-red-600 mt-4 text-center">{errorMsg}</p>
+        )}
       </div>
     </div>
   );
