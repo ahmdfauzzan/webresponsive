@@ -31,22 +31,24 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
-      <div className="w-full max-w-xs">
-        {/* Logo */}
-        <div className="flex justify-center mb-8">
-          <img
-            src={logotecno}
-            alt="Logo"
-            className="w-44 select-none"
-            draggable={false}
-          />
-        </div>
+    <div className="relative min-h-screen bg-gray-50 flex items-center justify-center px-4">
+      {/* Logo */}
+      <div className="absolute top-50 left-1/2 transform -translate-x-1/2 mb-8">
+        <img
+          src={logotecno}
+          alt="Logo"
+          draggable={false}
+          className="min-w-72 h-auto"
+        />
+      </div>
 
-        {/* Form */}
+      {/* Form */}
+      <div className="w-full max-w-xs">
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <div>
-            <label className="block text-sm text-gray-600 mb-1">Email</label>
+            <label className="block text-sm text-gray-600 mb-1 text-center">
+              Email
+            </label>
             <input
               type="email"
               placeholder="Email"
@@ -58,7 +60,9 @@ export default function LoginPage() {
           </div>
 
           <div>
-            <label className="block text-sm text-gray-600 mb-1">Password</label>
+            <label className="block text-sm text-gray-600 mb-1 text-center">
+              Password
+            </label>
             <input
               type="password"
               placeholder="Password"
@@ -68,13 +72,14 @@ export default function LoginPage() {
               className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
-
-          <button
-            type="submit"
-            className="w-full p-3 bg-white text-black font-semibold rounded-md shadow hover:shadow-md transition"
-          >
-            Login
-          </button>
+          <div className="flex justify-center">
+            <button
+              type="submit"
+              className="w-1/2 p-3 bg-white text-black font-semibold rounded-md shadow hover:shadow-md transition"
+            >
+              Login
+            </button>
+          </div>
         </form>
 
         {errorMsg && (
