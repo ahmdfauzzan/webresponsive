@@ -14,7 +14,7 @@ export default function MainLayout() {
       {isHome && <HomeHeader />}
       {isMenu && <MenuHeader />}
 
-      <main className="flex-1 overflow-y-auto px-4 pb-20 pt-4 max-w-md mx-auto w-full">
+      <main className="flex-1 overflow-y-auto max-w-md mx-auto w-full">
         <Outlet />
       </main>
 

@@ -8,7 +8,7 @@ export default function HomePage() {
   const { greeting, name, saldo, point, qrcode, banner } = data!.result;
 
   return (
-    <div className="min-h-screen bg-gray-100 py-6 px-4">
+    <div className="min-h-screen bg-gray-100">
       <div className="max-w-md mx-auto">
         {/* Greeting Card */}
         <div className="bg-white shadow rounded-xl p-4 mb-6">
