@@ -20,7 +20,6 @@ export const login = async (email: string, password: string): Promise<LoginRespo
   });
 
   if (!response.ok) {
-    // Ambil pesan error dari response
     const errorBody = await response.json();
     throw new Error(errorBody.message || "Login gagal");
   }
